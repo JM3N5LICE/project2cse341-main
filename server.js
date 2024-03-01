@@ -14,7 +14,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.CLIENT_SECRET,
-  baseURL: 'https://webservices2.onrender.com',
+  baseURL: 'https://project2cse341-main.onrender.com/',
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL
 };
