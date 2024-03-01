@@ -1,67 +1,39 @@
-### GET all cars
-GET http://localhost:8080/cars/
+// LOCALHOST ### Retrieve all contacts 
+GET http://localhost:8080/movies
 
-### POST a new car
-POST http://localhost:8080/cars/
-content-type: application/json
+### 
+GET http://localhost:8080/users
 
-{
-"brand": "Toyota",
-"model": "Tundra",
-"year": 2021,
-"color": "Black",
-"fuelType": "Gasoline",
-"mileage": 4500,
-"features": [
-"Bluetooth",
-"Backup Camera",
-"Keyless Entry"
-]
-}
+### Retrieve contact by id GET http://localhost:8080/movies/65c7914a610531c90137c4f0
 
-### Deploy to Render
-
-### GET ALL cars
-GET https://webservices2.onrender.com/cars/
-
-### GET Specific car
-GET https://webservices2.onrender.com/cars/65cef9c7583d92df3af28cf2
-
-### POST a new car
-POST https://webservices2.onrender.com/cars/
-content-type: application/json
+### Create contact POST http://localhost:8080/movies HTTP/1.1 content-type: application/json
 
 {
-"brand": "Nissan",
-"model": "Altima",
-"year": 2024,
-"color": "Silver",
-"fuelType": "Gasoline",
-"mileage": 4500,
-"features": [
-"Bluetooth",
-"Backup Camera",
-"Keyless Entry"
-]
+"title": "Tron: Legacy", "releaseDate": "December 17, 2010", "description": "The son of a virtual world designer goes looking for his father and ends up inside the digital world that his father designed. He meets his father's corrupted creation and a unique ally who was born inside the digital world.", "director": "Joseph Kosinski", "genre": "Sci-Fi", "rating": "PG"
 }
 
-### PUT - update car
-PUT https://webservices2.onrender.com/cars/65c76575434690bad8c49fb28
-content-type: application/json
+### PUT contact (update: add id to url) PUT http://localhost:8080/movies/ HTTP/1.1 content-type: application/json
 
 {
-"brand": "Nissan",
-"model": "Altima",
-"year": 2023,
-"color": "Silver",
-"fuelType": "Diesel",
-"mileage": 4500,
-"features": [
-"Bluetooth",
-"Backup Camera",
-"Keyless Entry"
-]
+"title": "", "releaseDate": "", "description": "", "director": "", "genre": "", "rating": ""
 }
 
-### DELETE a car
-DELETE https://webservices2.onrender.com/cars/65cef9c7583d92df3af28cf2
+### DELETE contact (add id to url) DELETE http://localhost:8080/movies/65c7df249b794bd48c6127a7 HTTP/1.1
+
+// PRODUCTION Deploy ### Retrieve all contacts GET https://cse341movie.onrender.com/movies HTTP/1.1
+
+### Retrieve contact by id GET https://cse341movie.onrender.com/movies/65c7e899719b4c7c7d04cf03 HTTP/1.1
+
+### Create contact POST https://cse341movie.onrender.com/movies HTTP/1.1 content-type: application/json
+
+{
+"title": "Tron: Legacy", "releaseDate": "December 17, 2010", "description": "The son of a virtual world designer goes looking for his father and ends up inside the digital world that his father designed. He meets his father's corrupted creation and a unique ally who was born inside the digital world.", "director": "Joseph Kosinski", "genre": "Sci-Fi", "rating": "PG"
+}
+
+### PUT contact (update: add id to url) PUT https://cse341movie.onrender.com/movies/ HTTP/1.1 content-type: application/json
+
+{
+"title": "", "releaseDate": "", "description": "", "director": "", "genre": "", "rating": ""
+}
+
+### DELETE contact (add id to url) DELETE https://cse341movie.onrender.com/movies/65c81029108bbeb03ee82286 HTTP/1.1
