@@ -5,7 +5,7 @@
     "description": "Web Services API",
     "version": "1.0.0"
   },
-  "host": "project2cse341-main.onrender.com/",
+  "host": "project2cse341-main.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
