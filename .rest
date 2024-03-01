@@ -1,0 +1,67 @@
+### GET all cars
+GET http://localhost:8080/cars/
+
+### POST a new car
+POST http://localhost:8080/cars/
+content-type: application/json
+
+{
+"brand": "Toyota",
+"model": "Tundra",
+"year": 2021,
+"color": "Black",
+"fuelType": "Gasoline",
+"mileage": 4500,
+"features": [
+"Bluetooth",
+"Backup Camera",
+"Keyless Entry"
+]
+}
+
+### Deploy to Render
+
+### GET ALL cars
+GET https://webservices2.onrender.com/cars/
+
+### GET Specific car
+GET https://webservices2.onrender.com/cars/65cef9c7583d92df3af28cf2
+
+### POST a new car
+POST https://webservices2.onrender.com/cars/
+content-type: application/json
+
+{
+"brand": "Nissan",
+"model": "Altima",
+"year": 2024,
+"color": "Silver",
+"fuelType": "Gasoline",
+"mileage": 4500,
+"features": [
+"Bluetooth",
+"Backup Camera",
+"Keyless Entry"
+]
+}
+
+### PUT - update car
+PUT https://webservices2.onrender.com/cars/65c76575434690bad8c49fb28
+content-type: application/json
+
+{
+"brand": "Nissan",
+"model": "Altima",
+"year": 2023,
+"color": "Silver",
+"fuelType": "Diesel",
+"mileage": 4500,
+"features": [
+"Bluetooth",
+"Backup Camera",
+"Keyless Entry"
+]
+}
+
+### DELETE a car
+DELETE https://webservices2.onrender.com/cars/65cef9c7583d92df3af28cf2
