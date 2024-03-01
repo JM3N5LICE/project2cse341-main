@@ -21,7 +21,7 @@
         }
       }
     },
-    "/cars/": {
+    "/movies/": {
       "get": {
         "description": "",
         "produces": [
@@ -30,6 +30,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -42,25 +45,22 @@
             "schema": {
               "type": "object",
               "properties": {
-                "brand": {
+                "title": {
                   "example": "any"
                 },
-                "model": {
+                "releaseDate": {
                   "example": "any"
                 },
-                "year": {
+                "description": {
                   "example": "any"
                 },
-                "color": {
+                "director": {
                   "example": "any"
                 },
-                "fuelType": {
+                "genre": {
                   "example": "any"
                 },
-                "mileage": {
-                  "example": "any"
-                },
-                "features": {
+                "rating": {
                   "example": "any"
                 }
               }
@@ -80,7 +80,7 @@
         }
       }
     },
-    "/cars/{id}": {
+    "/movies/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -100,6 +100,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -118,173 +121,22 @@
             "schema": {
               "type": "object",
               "properties": {
-                "brand": {
+                "title": {
                   "example": "any"
                 },
-                "model": {
+                "releaseDate": {
                   "example": "any"
                 },
-                "year": {
+                "description": {
                   "example": "any"
                 },
-                "color": {
+                "director": {
                   "example": "any"
                 },
-                "fuelType": {
+                "genre": {
                   "example": "any"
                 },
-                "mileage": {
-                  "example": "any"
-                },
-                "features": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/motorcycles/": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "brand": {
-                  "example": "any"
-                },
-                "model": {
-                  "example": "any"
-                },
-                "year": {
-                  "example": "any"
-                },
-                "color": {
-                  "example": "any"
-                },
-                "type": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/motorcycles/{id}": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "brand": {
-                  "example": "any"
-                },
-                "model": {
-                  "example": "any"
-                },
-                "year": {
-                  "example": "any"
-                },
-                "color": {
-                  "example": "any"
-                },
-                "type": {
+                "rating": {
                   "example": "any"
                 }
               }
