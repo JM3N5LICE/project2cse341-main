@@ -7,7 +7,7 @@ router.use('/', require('./swagger'));
 // router.use('/contacts', require('./contacts'))
 
 router.use('/movies', require('./movies'))
-router.use('/users', require('./users'))
+// router.use('/users', require('./users'))
 // router.use('/groups', require('./groups'))
 
 // Export the router to be used in other modules
