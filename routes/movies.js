@@ -1,6 +1,7 @@
 // Import the 'express' module to create a router
 const express = require('express');
 const router = express.Router();
+const { requiresAuth } = require('express-openid-connect');
 
 // Import the 'contactsController' module, which contains functions for handling contact-related routes
 const moviesController = require('../controllers/movies');
@@ -9,15 +10,15 @@ const moviesController = require('../controllers/movies');
 const validation = require('../middleware/validate');
 
 // Movie Routes
-router.get('/', moviesController.getAllMovies);
+router.get('/', requiresAuth(), moviesController.getAllMovies);
 
-router.get('/:id', moviesController.getSingleMovie);
+router.get('/:id', requiresAuth(), moviesController.getSingleMovie);
 
-router.post('/', validation.saveMovie, moviesController.createMovie);
+router.post('/', requiresAuth(), validation.saveMovie, moviesController.createMovie);
 
-router.put('/:id', validation.saveMovie, moviesController.updateMovie);
+router.put('/:id', requiresAuth(), validation.saveMovie, moviesController.updateMovie);
 
-router.delete('/:id', moviesController.deleteMovie );
+router.delete('/:id', requiresAuth(), moviesController.deleteMovie );
 
 // User Routes
 
