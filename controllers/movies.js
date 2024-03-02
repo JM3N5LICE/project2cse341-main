@@ -26,28 +26,42 @@ const getAllMovies = async (req, res, next) => {
 
 // Function to get a single movie by ID from the database
 const getSingleMovie = async (req, res) => {
-  try {
-    if (!ObjectId.isValid(req.params.id)) {
-      res.status(400).json({ error: 'Invalid movie ID.' });
-      return;
-    }
-    const userId = new ObjectId(req.params.id);
-    mongodb
-      .getDb()
-      .db()
-      .collection('movies')
-      .find({ _id: userId })
-      .toArray((err, result) => {
-        if (err) {
-          res.status(400).json({ error: 'Failed to get movie.' });
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(result[0]);
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: 'Internal Server Error' });
-  }
+//   try {
+//     if (!ObjectId.isValid(req.params.id)) {
+//       res.status(400).json({ error: 'Invalid movie ID.' });
+//       return;
+//     }
+//     const userId = new ObjectId(req.params.id);
+//     mongodb
+//       .getDb()
+//       .db()
+//       .collection('movies')
+//       .find({ _id: userId })
+//       .toArray((err, result) => {
+//         if (err) {
+//           res.status(400).json({ error: 'Failed to get movie.' });
+//         }
+//         res.setHeader('Content-Type', 'application/json');
+//         res.status(200).json(result[0]);
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ success: false, error: 'Internal Server Error' });
+//   }
+// };
+if (!ObjectId.isValid(req.params.id)) {
+  res.status(400).json('Invalid movie ID.');
+}
+const movieId = new ObjectId(req.params.id);
+const result = await mongodb
+  .getDb()
+  .db()
+  .collection("movies")
+  .find({ _id: movieId });
+result.toArray().then((lists) => {
+  res.setHeader("Content-Type", "application/json");
+  res.status(200).json(lists[0]);
+});
 };
 
 
