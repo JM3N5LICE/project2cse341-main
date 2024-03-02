@@ -4,38 +4,18 @@ const mongodb = require('../db/connect');
 // Import the 'ObjectId' class from the 'mongodb' library
 const ObjectId = require('mongodb').ObjectId;
 
-const getAllMovies = async (req, res, next) => {
-  const result = await mongodb.getDb().db().collection("movies").find();
-  result.toArray().then((lists) => {
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(lists);
-  });
+const getAllMovies = async (req, res) => {
+  try {
+    const db = mongodb.getDb();
+    const movies = await db.collection('movies').find().toArray();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(movies);
+  } catch (error) {
+    console.error('Error retrieving movies:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
 };
-// // Function to get all movies from the database
-// const getAllMovies = async (req, res) => {
-//   try {
-//     mongodb
-//       .getDb()
-//       .db()
-//       .collection('movies')
-//       .find()
-//       .toArray((err, lists) => {
-//         if (err) {
-//           // If an error occurs, send a response with a 500 status code
-//           console.error(err); // Log the error for debugging purposes
-//           res.status(500).json({ success: false, error: 'Internal Server Error' });
-//           return; // Exit the function to prevent further execution
-//         }
-//         // If no error occurs, send the retrieved data as JSON response with a 200 status code
-//         res.setHeader('Content-Type', 'application/json');
-//         res.status(200).json(lists);
-//       });
-//   } catch (error) {
-//     // This block won't catch errors from asynchronous operations like MongoDB queries
-//     console.error(error); // Log the error for debugging purposes
-//     res.status(500).json({ success: false, error: 'Internal Server Error' });
-//   }
-// };
+
 
 // Function to get a single movie by ID from the database
 const getSingleMovie = async (req, res) => {
@@ -45,20 +25,16 @@ const getSingleMovie = async (req, res) => {
       return;
     }
     const userId = new ObjectId(req.params.id);
-    mongodb
-      .getDb()
-      .db()
-      .collection('movies')
-      .find({ _id: userId })
-      .toArray((err, result) => {
-        if (err) {
-          res.status(400).json({ error: 'Failed to get movie.' });
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(result[0]);
-    });
+    const db = mongodb.getDb();
+    const movie = await db.collection('movies').findOne({ _id: userId });
+    if (!movie) {
+      res.status(404).json({ error: 'Movie not found.' });
+      return;
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(movie);
   } catch (error) {
-    console.error(error);
+    console.error('Error retrieving movie:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 };
