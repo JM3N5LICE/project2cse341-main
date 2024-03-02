@@ -1,13 +1,9 @@
-var express = require('express');
+const express = require('express');
 const bodyParser = require('body-parser');
-var app = express();
-app.use(express.json());
+const app = express();
 const port = process.env.PORT || 8080;
 const mongodb = require('./db/connect');
-
-
 const { auth, requiresAuth } = require('express-openid-connect');
-
 const config = {
   authRequired: false,
   auth0Logout: true,
@@ -22,21 +18,21 @@ app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+  const loginStatus = req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out';
+  const apiDocsLink = req.oidc.isAuthenticated() ? `<a href="${config.baseURL}/api-docs">API Docs</a>` : '';
+  res.send(`${loginStatus}<br>${apiDocsLink}`);
 });
 
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-app
-  .use(bodyParser.json())
+app.use(bodyParser.json())
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
   .use('/', require('./routes'));
-
 
 app.listen(8080, () => {
     console.log(`server started on port ${port}`);
@@ -46,7 +42,6 @@ mongodb.initDb((err, mongodb) => {
     if (err) {
         console.log(err);
     } else {
-        //app.listen(port);
         console.log(`Connected to DB and listening on ${port}`);
     }
 });
