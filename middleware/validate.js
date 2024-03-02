@@ -25,7 +25,7 @@ const saveMovie = (req, res, next) => {
 const saveActor = (req, res, next) => {
   const validationRule = {
     name: 'required|string',
-    age: 'require|string', // This ensures that likedMovies is an array, but not necessarily required
+    age: 'required|string', // This ensures that likedMovies is an array, but not necessarily required
     movies: 'array' // This ensures that groups is an array, but not necessarily required
   };
 
