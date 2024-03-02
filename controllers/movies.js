@@ -13,10 +13,11 @@ const ObjectId = require('mongodb').ObjectId;
 // };
 const getAllMovies = async (req, res, next) => {
   try {
-    const db = mongodb.getDb();
-    const result = await db.collection("movies").find().toArray();
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(result);
+    const result = await mongodb.getDb().db().collection("movies").find();
+    result.toArray().then((lists) => {
+     res.setHeader("Content-Type", "application/json");
+     res.status(200).json(lists);
+   })
   } catch (error) {
     console.error('Error retrieving movies:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
