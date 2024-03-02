@@ -22,11 +22,11 @@ const saveMovie = (req, res, next) => {
   });
 };
 
-const saveUser = (req, res, next) => {
+const saveActor = (req, res, next) => {
   const validationRule = {
     name: 'required|string',
-    likedMovies: 'array', // This ensures that likedMovies is an array, but not necessarily required
-    groups: 'array' // This ensures that groups is an array, but not necessarily required
+    age: 'require|string', // This ensures that likedMovies is an array, but not necessarily required
+    movies: 'array' // This ensures that groups is an array, but not necessarily required
   };
 
   validator(req.body, validationRule, {}, (err, status) => {
@@ -44,5 +44,5 @@ const saveUser = (req, res, next) => {
 
 module.exports = {
   saveMovie,
-  saveUser
+  saveActor
 };
